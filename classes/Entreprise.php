@@ -105,6 +105,16 @@ class Entreprise{
     $this->employes[] = $employe;
     //array_push($this->employes, $employe);
     }
+
+    public function afficherEmployes(){
+        $result = "<h2>Employes de $this</h2><ul>";
+
+        foreach($this->employes as $employe){
+            $result .= "<li>$employe</li>";
+        }
+        return $result;
+    }
+
 public function __toString(){
     return $this->raisonSociale;
 }
