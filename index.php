@@ -11,8 +11,9 @@ spl_autoload_register(function ($class_name){
 
 $elanFormation = new Entreprise("ELAN FORMATION", "1993-01-01", "14 rue du Rhône",
  "67100", "STRASBOURG");
- $stephane = new Employe("SMAIL", "Stéphane", "stephane@elan-formation.fr");
+ $stephane = new Employe("SMAIL", "Stéphane", "stephane@elan-formation.fr", $elanformation);
 
  // echo $elanFormation;
  echo $elanFormation->getInfos();
- echo 
+ echo $stephane;
+ 

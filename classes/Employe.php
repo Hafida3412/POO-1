@@ -12,6 +12,7 @@ class Employe {
         $this->prenom = $prenom;
         $this->email = $email;
         $this->entreprise = $entreprise;
+        $this->entreprise->addEmploye($this);
     }
     
     public function getNom()
@@ -49,7 +50,25 @@ class Employe {
 
         return $this;
     }
-    public function __toString(){
-        return $this->prenom."".$this->nom;
-    }
-    }
+
+public function getEntreprise(): Entreprise
+{
+    return $this->entreprise;
+}
+
+public function setEntreprise($entreprise)
+{
+    $this->entreprise = $entreprise;
+    
+    return $this;
+}
+
+public function getInfos(){
+    return $this."travaille dans l'entreprise".$this->entreprise;
+}
+
+public function __toString(){
+    return $this->prenom."".$this->nom;
+}
+
+}
