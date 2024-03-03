@@ -1,13 +1,12 @@
 <?php
 
 class Entreprise{
-
     private string $raisonSociale;
     private DateTime $dateCreation;
     private string $adresse;
     private string $cp;
     private string $ville;
-    private array $employes;
+    private array $contrats;
 
     public function __construct(string $raisonSociale, string $dateCreation, string $adresse,
     string $cp, string $ville){
@@ -16,7 +15,7 @@ class Entreprise{
         $this->adresse = $adresse;
         $this->cp = $cp;
         $this->ville = $ville;
-        $this->employes = [];
+        $this->contrats = [];
 }
 
     public function getRaisonSociale(): string
@@ -88,34 +87,32 @@ class Entreprise{
          et se situe à l'adresse suivante ".$this->getAdresseComplete();
     }
 
-    
-    public function getEmployes()
+    public function getContrats()
     {
-        return $this->employes;
+        return $this->contrats;
     }
-    
-    public function setEmployes($employes)
+
+    public function setContrats($contrats)
     {
-        $this->employes = $employes;
-        
+        $this->contrats = $contrats;
+
         return $this;
     }
-    
-    public function addEmploye(Employe $employe){
-    $this->employes[] = $employe;
-    //array_push($this->employes, $employe);
+
+    public function addContrat(Contrat $contrat){
+        $this->contrats[] = $contrat;
     }
 
     public function afficherEmployes(){
-        $result = "<h2>Employes de $this</h2><ul>";
+        $result = "<h2>Employes de $this</h2>";
 
-        foreach($this->employes as $employe){
-            $result .= "<li>$employe</li>";
+        foreach ($this->contrats as $contrat){
+            $result .= $contrat->getEmploye()." (". $contrat->getDateEmbauche()." en ".$contrat->getTypeContrat().")<br>";
         }
-        return $result;
+            return $result;
     }
 
-public function __toString(){
-    return $this->raisonSociale;
-}
-}
+    public function __toString(){
+        return $this->raisonSociale;
+    }
+    }

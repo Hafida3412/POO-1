@@ -4,15 +4,14 @@ class Employe {
     private string $nom;
     private string $prenom;
     private string $email;
-    private Entreprise $entreprise;
+    private array $contrats;
 
-    public function __construct(string $nom, string $prenom, string $email, 
-    Entreprise $entreprise) {
+    public function __construct(string $nom, string $prenom, string $email,) {
         $this->nom =$nom;
         $this->prenom = $prenom;
         $this->email = $email;
-        $this->entreprise = $entreprise;
-        $this->entreprise->addEmploye($this);
+        $this->contrats = [];
+      
     }
     
     public function getNom()
@@ -50,24 +49,32 @@ class Employe {
 
         return $this;
     }
+    public function getContrats()
+    {
+        return $this->contrats;
+    }
 
-public function getEntreprise(): Entreprise
-{
-    return $this->entreprise;
-}
+    public function setContrats($contrats)
+    {
+        $this->contrats = $contrats;
 
-public function setEntreprise($entreprise)
-{
-    $this->entreprise = $entreprise;
-    
-    return $this;
-}
+        return $this;
+    }
 
-public function getInfos(){
-    return $this."travaille dans l'entreprise".$this->entreprise;
-}
+    public function addContrat(Contrat $contrat){
+        $this->contrats[] = $contrat;
+    }
 
-public function __toString(){
+    public function afficherEntreprises(){
+        $result = "<h2>Entreprises de $this</h2>";
+
+        foreach ($this->contrats as $contrat){
+            $result .= $contrat->getEntreprise()." (". $contrat->getDateEmbauche()." (". $contrat->getDateEmbauche()." en ".$contrat->getTypeContrat().")<br>";
+        }
+            return $result;
+    }
+
+     public function __toString(){
     return $this->prenom."".$this->nom;
 }
 
